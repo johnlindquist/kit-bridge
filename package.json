@@ -9,10 +9,10 @@
   "typesVersions": {
     "*": {
       "esm/*": [
-        "dist/types/*"
+        "types/*"
       ],
       "cjs/*": [
-        "dist/types/*"
+        "types/*"
       ]
     }
   },
@@ -25,12 +25,11 @@
     "tsc": "tsc ./src/*.ts --allowSyntheticDefaultImports --moduleResolution node --allowJs",
     "tsc:esm": "npm run tsc -- --module ES2020 --target ES2020 --outDir ./dist/esm",
     "tsc:cjs": "npm run tsc -- --module commonjs --target ES2020  --outDir ./dist/cjs",
-    "tsc:types": "npm run tsc -- --outDir ./dist/types --declaration --emitDeclarationOnly",
+    "tsc:types": "npm run tsc -- --outDir ./types --declaration --emitDeclarationOnly",
     "cjs:rename": "renamer --path-element --find js --replace cjs ./dist/cjs/*",
     "cjs:replace": "find ./dist/cjs/* -type f -exec sed -i '' 's/require(\"\\.\\/\\(.*\\)\\.js\")/require(\"\\.\\/\\1\\.cjs\")/g' {} \\; ",
     "cjs:import": "find ./dist/cjs/* -type f -exec sed -i '' 's/Promise.resolve().then(() => require(\"\\(.*\\)\"))/import(\"\\1\")/g' {} \\; ",
-    "cp:declarations": "cp -a ./types/. ./dist/types/",
-    "build": "npm run clean && npm-run-all tsc:* && npm-run-all cjs:* && npm-run-all cp:*",
+    "build": "npm run clean && npm-run-all tsc:* && npm-run-all cjs:*",
     "prepublish": "build"
   },
   "keywords": [],

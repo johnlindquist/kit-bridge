@@ -71,9 +71,9 @@ export let kitDotEnv = () => {
 export const prefsPath = kitPath("db", "prefs.json")
 export const shortcutsPath = kitPath("db", "shortcuts.json")
 export const promptDbPath = kitPath("db", "prompt.json")
+export const appDbPath = kitPath("db", "app.json")
 export const mainScriptPath = kitPath("main", "index.js")
 export const execPath = kitPath("node", "bin", "node")
-export const appDbPath = kitPath("db", "app.json")
 
 export const KENV_SCRIPTS = kenvPath("scripts")
 export const KENV_APP = kenvPath("app")

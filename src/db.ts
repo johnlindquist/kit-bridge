@@ -1,16 +1,22 @@
 import * as path from "path"
 import {
+  appDbPath,
   kenvPath,
   kitPath,
+  mainScriptPath,
+  prefsPath,
+  promptDbPath,
+  shortcutsPath,
   writeScriptsDb,
 } from "./util.js"
 import { Choice, Script } from "./type.js"
+import { Low } from "lowdb"
 
 export let db = async (
   key: any,
   defaults: any = {},
   fromCache = true
-) => {
+): Promise<Low & any> => {
   let dbPath =
     key.startsWith(path.sep) && key.endsWith(".json")
       ? key
@@ -54,6 +60,9 @@ export let db = async (
           : d[k]
       }
       return _db?.data?.[k]
+    },
+    set: (target: any, key: string, value: any) => {
+      return (_db.data[key] = value)
     },
   })
 }
@@ -131,3 +140,60 @@ export let scriptValue: ScriptValue =
       value: script[pluck],
     }))
   }
+
+type AppDb = {
+  needsRestart: boolean
+  version: string
+}
+
+export let getAppDb = async (): Promise<
+  Low<any> & AppDb
+> => {
+  return await db(appDbPath, {
+    needsRestart: false,
+    version: "0.0.0",
+  })
+}
+
+type ShortcutsDb = {
+  shortcuts: {
+    [key: string]: string
+  }
+}
+export let getShortcutsDb = async (): Promise<
+  Low<any> & ShortcutsDb
+> => {
+  return await db(shortcutsPath, {
+    shortcuts: {
+      [mainScriptPath]: "cmd ;",
+    },
+  })
+}
+
+type PrefsDb = {
+  showJoin: boolean
+}
+export let getPrefsDb = async (): Promise<
+  Low<any> & PrefsDb
+> => {
+  return await db(prefsPath, { showJoin: true })
+}
+
+type PromptDb = {
+  screens: {
+    [key: string]: {
+      x: number
+      y: number
+      width: number
+      height: number
+    }
+  }
+}
+export let getPromptDb = async (): Promise<
+  Low<any> & PromptDb
+> => {
+  return await db(promptDbPath, {
+    screens: {},
+    clear: false,
+  })
+}

@@ -1,4 +1,4 @@
-import { editor } from "../types/editor.api"
+import { editor } from "../api/editor.api"
 import { ChangeEvent, KeyboardEvent } from "react"
 import { ProcessType, UI, Channel, Mode } from "./enum.js"
 
