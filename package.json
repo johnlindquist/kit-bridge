@@ -29,7 +29,8 @@
     "cjs:rename": "renamer --path-element --find js --replace cjs ./dist/cjs/*",
     "cjs:replace": "find ./dist/cjs/* -type f -exec sed -i '' 's/require(\"\\.\\/\\(.*\\)\\.js\")/require(\"\\.\\/\\1\\.cjs\")/g' {} \\; ",
     "cjs:import": "find ./dist/cjs/* -type f -exec sed -i '' 's/Promise.resolve().then(() => require(\"\\(.*\\)\"))/import(\"\\1\")/g' {} \\; ",
-    "build": "npm run clean && npm-run-all tsc:* && npm-run-all cjs:*",
+    "cp:declarations": "cp -a ./types/. ./dist/types/",
+    "build": "npm run clean && npm-run-all tsc:* && npm-run-all cjs:* && npm-run-all cp:*",
     "prepublish": "build"
   },
   "keywords": [],

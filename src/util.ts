@@ -64,6 +64,10 @@ export let kenvPath = (...parts: string[]) => {
   )
 }
 
+export let kitDotEnv = () => {
+  return process.env.KIT_DOTENV || kenvPath(".env")
+}
+
 export const prefsPath = kitPath("db", "prefs.json")
 export const shortcutsPath = kitPath("db", "shortcuts.json")
 export const promptDbPath = kitPath("db", "prompt.json")
