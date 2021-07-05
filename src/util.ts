@@ -3,12 +3,8 @@ import * as os from "os"
 
 import { ProcessType, UI } from "./enum.js"
 import { Script } from "./type.js"
-import {
-  readFile,
-  readdir,
-  lstat,
-  copyFile,
-} from "fs/promises"
+import { copyFileSync } from "fs"
+import { readFile, readdir, lstat } from "fs/promises"
 import { execSync } from "child_process"
 
 export let home = (...pathParts: string[]) => {
@@ -22,7 +18,9 @@ export let checkProcess = (pid: string | number) => {
   return execSync(`kill -0 ` + pid).buffer.toString()
 }
 
-export let isFile = async (file: string) => {
+export let isFile = async (
+  file: string
+): Promise<boolean> => {
   try {
     let stats = await lstat(file)
     return stats.isFile()
@@ -31,7 +29,9 @@ export let isFile = async (file: string) => {
   }
 }
 
-export let isDir = async (dir: string) => {
+export let isDir = async (
+  dir: string
+): Promise<boolean> => {
   try {
     let stats = await lstat(dir)
 
@@ -41,8 +41,15 @@ export let isDir = async (dir: string) => {
   }
 }
 
-export let isBin = async (bin: string) =>
-  Boolean(execSync(`command -v ${bin}`).buffer.toString())
+export let isBin = async (
+  bin: string
+): Promise<boolean> => {
+  try {
+    return Boolean(execSync(`command -v ${bin}`))
+  } catch {
+    return false
+  }
+}
 
 export let kitPath = (...parts: string[]) =>
   path.join(
@@ -85,7 +92,9 @@ export let assignPropsTo = (
   })
 }
 
-export let resolveToScriptPath = async (script: string) => {
+export let resolveToScriptPath = (
+  script: string
+): string => {
   if (!script.endsWith(".js")) script += ".js"
 
   if (script.startsWith(path.sep)) return script
@@ -100,7 +109,7 @@ export let resolveToScriptPath = async (script: string) => {
     !script.includes(kenvPath()) &&
     !script.includes(kitPath())
   ) {
-    await copyFile(script, kitPath("tmp"))
+    copyFileSync(script, kitPath("tmp"))
 
     let tmpScript = kitPath(
       "tmp",

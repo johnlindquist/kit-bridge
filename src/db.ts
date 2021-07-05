@@ -114,9 +114,8 @@ export let getScriptFromString = async (
   )
 }
 
-export let buildMainPromptChoices = async (
-  fromCache = true
-) => (await getScriptsDb(fromCache)).scripts
+export let getScripts = async (fromCache = true) =>
+  (await getScriptsDb(fromCache)).scripts
 export interface ScriptValue {
   (pluck: keyof Script, fromCache?: boolean): () => Promise<
     Choice<string>[]
@@ -125,9 +124,7 @@ export interface ScriptValue {
 
 export let scriptValue: ScriptValue =
   (pluck, fromCache) => async () => {
-    let menuItems: Script[] = await buildMainPromptChoices(
-      fromCache
-    )
+    let menuItems: Script[] = await getScripts(fromCache)
 
     return menuItems.map((script: Script) => ({
       ...script,
