@@ -121,6 +121,7 @@ export declare type EditorConfig = editor.IStandaloneEditorConstructionOptions &
     value?: string;
 };
 export declare type TextareaConfig = {
+    placeholder?: string;
     value?: string;
 };
 export declare type EditorRef = editor.IStandaloneCodeEditor;

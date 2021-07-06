@@ -135,6 +135,7 @@ export type EditorConfig =
   }
 
 export type TextareaConfig = {
+  placeholder?: string
   value?: string
 }
 

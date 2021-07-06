@@ -12,6 +12,7 @@ export declare const prefsPath: string;
 export declare const shortcutsPath: string;
 export declare const promptDbPath: string;
 export declare const appDbPath: string;
+export declare const tmpClipboardDir: string;
 export declare const mainScriptPath: string;
 export declare const execPath: string;
 export declare const KENV_SCRIPTS: string;
