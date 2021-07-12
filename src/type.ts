@@ -1,5 +1,4 @@
 import { editor } from "../api/editor.api"
-import { ChangeEvent, KeyboardEvent } from "react"
 import { ProcessType, UI, Channel, Mode } from "./enum.js"
 
 export interface Choice<Value = any> {
@@ -47,7 +46,7 @@ export interface PromptData {
   tabs: string[]
   ignoreBlur: boolean
   textarea?: boolean
-  secret?: "password" | "text"
+  secret?: Secret
 }
 
 export interface MessageData extends PromptData {
@@ -73,53 +72,9 @@ export interface MessageData extends PromptData {
   tabIndex?: number
 }
 
-export interface ChoiceButtonData {
-  choices: Choice[]
-  currentIndex: number
-  inputValue: string
-  mouseEnabled: boolean
-  onIndexChange: (index: number) => void
-  onIndexSubmit: (index: number) => void
-}
-export interface ChoiceButtonProps {
-  data: ChoiceButtonData
-  index: number
-  style: any
-}
-
 export enum Secret {
   password = "password",
   text = "text",
-}
-export interface InputProps {
-  onKeyDown: (
-    event: KeyboardEvent<HTMLInputElement>
-  ) => void
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void
-  placeholder: string
-  secret: Secret
-  value: any
-}
-export interface HotkeyProps {
-  submit(data: any): void
-  onEscape(): void
-}
-
-export interface DropProps {
-  placeholder: string
-  submit(data: any): void
-  onEscape(): void
-}
-
-export interface ListProps {
-  height: number
-  width: number
-  onListChoicesChanged: (listHeight: number) => void
-  index: number
-  choices: ChoiceButtonData["choices"]
-  onIndexChange: ChoiceButtonData["onIndexChange"]
-  onIndexSubmit: ChoiceButtonData["onIndexSubmit"]
-  inputValue: string
 }
 
 export interface EditorProps {
@@ -140,3 +95,18 @@ export type TextareaConfig = {
 }
 
 export type EditorRef = editor.IStandaloneCodeEditor
+
+export type PromptBounds = {
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
+export type PromptDb = {
+  screens: {
+    [screenId: string]: {
+      [scriptId: string]: PromptBounds
+    }
+  }
+}

@@ -9,7 +9,7 @@ import {
   shortcutsPath,
   writeScriptsDb,
 } from "./util.js"
-import { Choice, Script } from "./type.js"
+import { Choice, Script, PromptDb } from "./type.js"
 import { Low } from "lowdb"
 
 export let db = async (
@@ -179,16 +179,6 @@ export let getPrefsDb = async (): Promise<
   return await db(prefsPath, { showJoin: true })
 }
 
-type PromptDb = {
-  screens: {
-    [key: string]: {
-      x: number
-      y: number
-      width: number
-      height: number
-    }
-  }
-}
 export let getPromptDb = async (): Promise<
   Low<any> & PromptDb
 > => {
