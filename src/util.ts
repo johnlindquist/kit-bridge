@@ -178,7 +178,7 @@ export let info = async (file: string): Promise<Script> => {
   let schedule = getByMarker("Schedule:")
   let watch = getByMarker("Watch:")
   let system = getByMarker("System:")
-  let image = getByMarker("Image:")
+  let img = getByMarker("Image:")
   let background = getByMarker("Background:")
   let timeout = parseInt(getByMarker("Timeout:"), 10)
 
@@ -230,7 +230,9 @@ export let info = async (file: string): Promise<Script> => {
     alias: getByMarker("Alias:"),
     author: getByMarker("Author:"),
     twitter: getByMarker("Twitter:"),
-    shortcode: getByMarker("Shortcode:"),
+    shortcode: getByMarker("Shortcode:")
+      ?.split(" ")
+      .map(sc => sc.trim().toLowerCase()),
     exclude: getByMarker("Exclude:"),
     schedule,
     watch,
@@ -242,7 +244,7 @@ export let info = async (file: string): Promise<Script> => {
     timeout,
     tabs,
     kenv,
-    image,
+    img,
     icon,
   }
 }

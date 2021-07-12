@@ -8,9 +8,11 @@ export interface Choice<Value = any> {
   description?: string
   focused?: string
   img?: string
+  icon?: string
   html?: string
   preview?: string
   id?: string
+  shortcode?: string[]
 }
 
 export interface Script extends Choice {
@@ -18,8 +20,6 @@ export interface Script extends Choice {
   command: string
   menu?: string
   shortcut?: string
-  description?: string
-  shortcode?: string
   alias?: string
   author?: string
   twitter?: string
@@ -34,12 +34,11 @@ export interface Script extends Choice {
   timeout?: number
   tabs?: string[]
   kenv: string
-  image?: string
-  icon?: string
   tag?: string
 }
 
 export interface PromptData {
+  id: number
   script: Script
   ui: UI
   placeholder: string
@@ -48,6 +47,7 @@ export interface PromptData {
   tabs: string[]
   ignoreBlur: boolean
   textarea?: boolean
+  secret?: "password" | "text"
 }
 
 export interface MessageData extends PromptData {
