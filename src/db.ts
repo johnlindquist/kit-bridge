@@ -8,6 +8,7 @@ import {
   promptDbPath,
   shortcutsPath,
   writeScriptsDb,
+  isDir,
 } from "./util.js"
 import { Choice, Script, PromptDb } from "./type.js"
 import { Low } from "lowdb"
@@ -21,6 +22,19 @@ export let db = async (
     key.startsWith(path.sep) && key.endsWith(".json")
       ? key
       : kenvPath("db", `${key}.json`)
+
+  let parentExists = await isDir(path.dirname(dbPath))
+  if (!parentExists) {
+    console.warn(
+      `Couldn't find ${path.dirname(
+        dbPath
+      )}. Returning defaults...`
+    )
+    return {
+      ...defaults,
+      write: () => {},
+    }
+  }
 
   let { Low, JSONFile } = await import("lowdb")
 
