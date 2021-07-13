@@ -1,5 +1,4 @@
 import { editor } from "../api/editor.api";
-import { ChangeEvent, KeyboardEvent } from "react";
 import { ProcessType, UI, Channel, Mode } from "./enum.js";
 export interface Choice<Value = any> {
     name: string;
@@ -44,7 +43,7 @@ export interface PromptData {
     tabs: string[];
     ignoreBlur: boolean;
     textarea?: boolean;
-    secret?: "password" | "text";
+    secret?: Secret;
 }
 export interface MessageData extends PromptData {
     channel: Channel;
@@ -68,48 +67,9 @@ export interface MessageData extends PromptData {
     hint?: string;
     tabIndex?: number;
 }
-export interface ChoiceButtonData {
-    choices: Choice[];
-    currentIndex: number;
-    inputValue: string;
-    mouseEnabled: boolean;
-    onIndexChange: (index: number) => void;
-    onIndexSubmit: (index: number) => void;
-}
-export interface ChoiceButtonProps {
-    data: ChoiceButtonData;
-    index: number;
-    style: any;
-}
 export declare enum Secret {
     password = "password",
     text = "text"
-}
-export interface InputProps {
-    onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
-    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-    placeholder: string;
-    secret: Secret;
-    value: any;
-}
-export interface HotkeyProps {
-    submit(data: any): void;
-    onEscape(): void;
-}
-export interface DropProps {
-    placeholder: string;
-    submit(data: any): void;
-    onEscape(): void;
-}
-export interface ListProps {
-    height: number;
-    width: number;
-    onListChoicesChanged: (listHeight: number) => void;
-    index: number;
-    choices: ChoiceButtonData["choices"];
-    onIndexChange: ChoiceButtonData["onIndexChange"];
-    onIndexSubmit: ChoiceButtonData["onIndexSubmit"];
-    inputValue: string;
 }
 export interface EditorProps {
     options: EditorConfig;
@@ -125,3 +85,16 @@ export declare type TextareaConfig = {
     value?: string;
 };
 export declare type EditorRef = editor.IStandaloneCodeEditor;
+export declare type PromptBounds = {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+};
+export declare type PromptDb = {
+    screens: {
+        [screenId: string]: {
+            [scriptId: string]: PromptBounds;
+        };
+    };
+};

@@ -1,4 +1,4 @@
-import { Choice, Script } from "./type.js";
+import { Choice, Script, PromptDb } from "./type.js";
 import { Low } from "lowdb";
 export declare let db: (key: any, defaults?: any, fromCache?: boolean) => Promise<any>;
 export declare let getScriptsDb: (fromCache?: boolean) => Promise<{
@@ -26,15 +26,5 @@ declare type PrefsDb = {
     showJoin: boolean;
 };
 export declare let getPrefsDb: () => Promise<Low<any> & PrefsDb>;
-declare type PromptDb = {
-    screens: {
-        [key: string]: {
-            x: number;
-            y: number;
-            width: number;
-            height: number;
-        };
-    };
-};
 export declare let getPromptDb: () => Promise<Low<any> & PromptDb>;
 export {};
