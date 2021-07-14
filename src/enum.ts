@@ -89,13 +89,13 @@ export enum ProcessState {
 }
 
 export enum UI {
+  none = 0,
   arg = 1 << 0,
   textarea = 1 << 1,
   hotkey = 1 << 2,
   drop = 1 << 3,
   editor = 1 << 4,
   form = 1 << 5,
-  none = 1 << 6,
 }
 
 export enum Bin {

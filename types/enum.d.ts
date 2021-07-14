@@ -84,13 +84,13 @@ export declare enum ProcessState {
     Active = "Active"
 }
 export declare enum UI {
-    arg = "arg",
-    textarea = "textarea",
-    hotkey = "hotkey",
-    drop = "drop",
-    editor = "editor",
-    form = "form",
-    none = "none"
+    none = 0,
+    arg = 1,
+    textarea = 2,
+    hotkey = 4,
+    drop = 8,
+    editor = 16,
+    form = 32
 }
 export declare enum Bin {
     scripts = "scripts",
