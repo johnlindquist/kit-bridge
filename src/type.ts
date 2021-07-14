@@ -83,11 +83,12 @@ export interface EditorProps {
   width: number
 }
 
-export type EditorConfig =
+export type EditorOptions =
   editor.IStandaloneEditorConstructionOptions & {
-    language?: string
-    value?: string
+    scrollTo: "end"
   }
+
+export type EditorConfig = string | EditorOptions
 
 export type TextareaConfig = {
   placeholder?: string
