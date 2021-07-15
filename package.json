@@ -1,6 +1,6 @@
 {
   "name": "kit-bridge",
-  "version": "1.0.19",
+  "version": "1.0.22",
   "description": "",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
@@ -33,7 +33,7 @@
     "cjs:rename": "renamer --path-element --find js --replace cjs dist/cjs/*",
     "cjs:replace": "find dist/cjs/* -type f -exec sed -i '' 's/require(\"\\.\\/\\(.*\\)\\.js\")/require(\"\\.\\/\\1\\.cjs\")/g' {} \\; ",
     "cjs:import": "find dist/cjs/* -type f -exec sed -i '' 's/Promise.resolve().then(() => __importStar(require(\"\\(.*\\)\")))/import(\"\\1\")/g' {} \\; ",
-    "build": "npm run clean && npm-run-all \"tsc:* --\" && npm-run-all cjs:*",
+    "build": "npm run clean && npm-run-all \"tsc:* --\" && node ./scripts/fix-cjs.mjs",
     "dev": "chokidar --initial \"./src/*.ts\" -c \"npm run build\"",
     "prepare": "npm run build"
   },

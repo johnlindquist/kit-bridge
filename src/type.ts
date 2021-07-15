@@ -85,7 +85,7 @@ export interface EditorProps {
 
 export type EditorOptions =
   editor.IStandaloneEditorConstructionOptions & {
-    scrollTo: "end"
+    scrollTo: "top" | "center" | "bottom"
   }
 
 export type EditorConfig = string | EditorOptions

@@ -104,6 +104,11 @@ export let resolveToScriptPath = (
 
   if (script.startsWith(path.sep)) return script
 
+  if (script.match(/\//g)?.length === 1) {
+    let [k, s] = script.split("/")
+    return kenvPath("kenvs", k, "scripts", s)
+  }
+
   if (script.startsWith("."))
     script = path.resolve(process.cwd(), script)
 
@@ -262,7 +267,7 @@ export let getLastSlashSeparated = (
   )
 }
 
-export let getScripts = async (kenv = kenvPath()) => {
+export let getScriptFiles = async (kenv = kenvPath()) => {
   let scriptsPath = path.join(kenv, "scripts")
   if (!(await isDir(scriptsPath))) {
     console.warn(`${scriptsPath} isn't a valid kenv dir`)
@@ -295,10 +300,10 @@ export let getKenvs = async (): Promise<string[]> => {
 }
 
 export let writeScriptsDb = async () => {
-  let scriptFiles = await getScripts()
+  let scriptFiles = await getScriptFiles()
   let kenvDirs = await getKenvs()
   for await (let kenvDir of kenvDirs) {
-    let scripts = await getScripts(kenvDir)
+    let scripts = await getScriptFiles(kenvDir)
     scriptFiles = [...scriptFiles, ...scripts]
   }
 

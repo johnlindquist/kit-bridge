@@ -76,9 +76,10 @@ export interface EditorProps {
     height: number;
     width: number;
 }
-export declare type EditorConfig = string | (editor.IStandaloneEditorConstructionOptions & {
-    scrollTo: "end";
-});
+export declare type EditorOptions = editor.IStandaloneEditorConstructionOptions & {
+    scrollTo: "top" | "center" | "bottom";
+};
+export declare type EditorConfig = string | EditorOptions;
 export declare type TextareaConfig = {
     placeholder?: string;
     value?: string;
