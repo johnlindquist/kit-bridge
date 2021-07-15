@@ -96,6 +96,7 @@ export enum UI {
   drop = 1 << 3,
   editor = 1 << 4,
   form = 1 << 5,
+  div = 1 << 6,
 }
 
 export enum Bin {
