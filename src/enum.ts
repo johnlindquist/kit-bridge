@@ -43,6 +43,7 @@ export enum Channel {
   SET_IGNORE_BLUR = "SET_IGNORE_BLUR",
   SET_INPUT = "SET_INPUT",
   SET_LOGIN = "SET_LOGIN",
+  SET_LOG = "SET_LOG",
   SET_MODE = "SET_MODE",
   SET_PANEL = "SET_PANEL",
   SET_PLACEHOLDER = "SET_PLACEHOLDER",
@@ -97,6 +98,7 @@ export enum UI {
   editor = 1 << 4,
   form = 1 << 5,
   div = 1 << 6,
+  log = 1 << 7,
 }
 
 export enum Bin {
