@@ -65,6 +65,7 @@ export enum Channel {
   CLEAR_PROMPT_CACHE = "CLEAR_PROMPT_CACHE",
   PROMPT_BLURRED = "PROMPT_BLURRED",
   SET_PID = "SET_PID",
+  RUN_SCRIPT = "RUN_SCRIPT",
 }
 
 export enum ProcessType {
