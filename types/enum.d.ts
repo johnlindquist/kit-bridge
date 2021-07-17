@@ -8,6 +8,7 @@ export declare enum Channel {
     CHOICE_FOCUSED = "CHOICE_FOCUSED",
     CLEAR_CACHE = "CLEAR_CACHE",
     CONSOLE_LOG = "CONSOLE_LOG",
+    CONSOLE_CLEAR = "CONSOLE_CLEAR",
     CONSOLE_WARN = "CONSOLE_WARN",
     CONTENT_HEIGHT_UPDATED = "CONTENT_HEIGHT_UPDATED",
     CONTENT_SIZE_UPDATED = "CONTENT_SIZE_UPDATED",
@@ -30,7 +31,6 @@ export declare enum Channel {
     QUIT_APP = "QUIT_APP",
     RESET_PROMPT = "RESET_PROMPT",
     SET_SCRIPT = "SET_SCRIPT",
-    SET_PROMPT_PROP = "SET_PROMPT_PROPS",
     SET_PROMPT_BOUNDS = "SET_PROMPT_BOUNDS",
     SEND_RESPONSE = "SEND_RESPONSE",
     SET_EDITOR_CONFIG = "SET_EDITOR_CONFIG",
@@ -42,6 +42,7 @@ export declare enum Channel {
     SET_IGNORE_BLUR = "SET_IGNORE_BLUR",
     SET_INPUT = "SET_INPUT",
     SET_LOGIN = "SET_LOGIN",
+    SET_LOG = "SET_LOG",
     SET_MODE = "SET_MODE",
     SET_PANEL = "SET_PANEL",
     SET_PLACEHOLDER = "SET_PLACEHOLDER",
@@ -90,7 +91,9 @@ export declare enum UI {
     hotkey = 4,
     drop = 8,
     editor = 16,
-    form = 32
+    form = 32,
+    div = 64,
+    log = 128
 }
 export declare enum Bin {
     scripts = "scripts",

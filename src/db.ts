@@ -43,7 +43,7 @@ export let db = async (
   await _db.read()
 
   if (!_db.data || !fromCache) {
-    console.log(`🔄 Refresh db ${key}`)
+    console.log(`🔄 Refresh scripts db`)
 
     let getData = async () => {
       if (typeof defaults === "function") {
