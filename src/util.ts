@@ -308,17 +308,12 @@ export let writeScriptsDb = async () => {
   }
 
   let scriptInfo = await Promise.all(scriptFiles.map(info))
-  return scriptInfo
-    .filter(
-      (script: Script) =>
-        !(script?.exclude && script?.exclude === "true")
-    )
-    .sort((a: Script, b: Script) => {
-      let aName = a.name.toLowerCase()
-      let bName = b.name.toLowerCase()
+  return scriptInfo.sort((a: Script, b: Script) => {
+    let aName = a.name.toLowerCase()
+    let bName = b.name.toLowerCase()
 
-      return aName > bName ? 1 : aName < bName ? -1 : 0
-    })
+    return aName > bName ? 1 : aName < bName ? -1 : 0
+  })
 }
 
 export let stripMetadata = (fileContents: string) => {
@@ -339,4 +334,10 @@ export let stripMetadata = (fileContents: string) => {
     new RegExp(`(^//\\s*(${markers.join("|")}):).*`, "gim"),
     "$1"
   )
+}
+
+export const getLogFromScriptPath = (filePath: string) => {
+  return filePath
+    .replace("scripts", "logs")
+    .replace(/\.js$/, ".log")
 }
