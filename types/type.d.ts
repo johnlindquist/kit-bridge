@@ -20,7 +20,7 @@ export interface Script extends Choice {
     alias?: string;
     author?: string;
     twitter?: string;
-    exclude?: string;
+    exclude?: boolean;
     schedule?: string;
     system?: string;
     watch?: string;

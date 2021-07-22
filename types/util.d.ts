@@ -36,3 +36,4 @@ export declare let getScriptFiles: (kenv?: string) => Promise<string[]>;
 export declare let getKenvs: () => Promise<string[]>;
 export declare let writeScriptsDb: () => Promise<Script[]>;
 export declare let stripMetadata: (fileContents: string) => string;
+export declare const getLogFromScriptPath: (filePath: string) => string;

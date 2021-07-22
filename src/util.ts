@@ -238,7 +238,7 @@ export let info = async (file: string): Promise<Script> => {
     shortcode: getByMarker("Shortcode:")
       ?.split(" ")
       .map(sc => sc.trim().toLowerCase()),
-    exclude: getByMarker("Exclude:"),
+    exclude: Boolean(getByMarker("Exclude:")),
     schedule,
     watch,
     system,
