@@ -11,6 +11,7 @@ export interface Choice<Value = any> {
     preview?: string;
     id?: string;
     shortcode?: string[];
+    className?: string;
 }
 export interface Script extends Choice {
     filePath: string;

@@ -1,21 +1,21 @@
 export declare enum Mode {
-    GENERATE = "GENERATE",
     FILTER = "FILTER",
-    MANUAL = "MANUAL",
-    HOTKEY = "HOTKEY"
+    GENERATE = "GENERATE",
+    HOTKEY = "HOTKEY",
+    MANUAL = "MANUAL"
 }
 export declare enum Channel {
     CHOICE_FOCUSED = "CHOICE_FOCUSED",
     CLEAR_CACHE = "CLEAR_CACHE",
-    CONSOLE_LOG = "CONSOLE_LOG",
-    OPEN_SCRIPT_LOG = "OPEN_SCRIPT_LOG",
-    OPEN_KIT_LOG = "OPEN_KIT_LOG",
+    CLEAR_PROMPT_CACHE = "CLEAR_PROMPT_CACHE",
     CONSOLE_CLEAR = "CONSOLE_CLEAR",
+    CONSOLE_LOG = "CONSOLE_LOG",
     CONSOLE_WARN = "CONSOLE_WARN",
     CONTENT_HEIGHT_UPDATED = "CONTENT_HEIGHT_UPDATED",
     CONTENT_SIZE_UPDATED = "CONTENT_SIZE_UPDATED",
     COPY_PATH_AS_PICTURE = "COPY_PATH_AS_PICTURE",
     CREATE_KENV = "CREATE_KENV",
+    EDIT_SCRIPT = "EDIT_SCRIPT",
     ESCAPE_PRESSED = "ESCAPE_PRESSED",
     EXIT = "EXIT",
     GENERATE_CHOICES = "GENERATE_CHOICES",
@@ -28,33 +28,41 @@ export declare enum Channel {
     GROW_PROMPT = "GROW_PROMPT",
     HIDE_APP = "HIDE_APP",
     NEEDS_RESTART = "NEEDS_RESTART",
+    OPEN_KIT_LOG = "OPEN_KIT_LOG",
+    OPEN_FILE = "OPEN_FILE",
+    OPEN_SCRIPT = "OPEN_SCRIPT",
+    OPEN_SCRIPT_LOG = "OPEN_SCRIPT_LOG",
+    PROMPT_BLURRED = "PROMPT_BLURRED",
     PROMPT_BOUNDS_UPDATED = "PROMPT_BOUNDS_UPDATED",
     PROMPT_ERROR = "PROMPT_ERROR",
     QUIT_APP = "QUIT_APP",
     RESET_PROMPT = "RESET_PROMPT",
-    SET_SCRIPT = "SET_SCRIPT",
-    SET_PROMPT_BOUNDS = "SET_PROMPT_BOUNDS",
+    RUN_SCRIPT = "RUN_SCRIPT",
     SEND_RESPONSE = "SEND_RESPONSE",
+    SET_CHOICES = "SET_CHOICES",
     SET_EDITOR_CONFIG = "SET_EDITOR_CONFIG",
     SET_FORM_HTML = "SET_FORM_HTML",
-    SET_MAX_HEIGHT = "SET_MAX_HEIGHT",
-    SET_MAIN_HEIGHT = "SET_MAIN_HEIGHT",
-    SET_TOP_HEIGHT = "SET_TOP_HEIGHT",
-    SET_TEXTAREA_CONFIG = "SET_TEXTAREA_CONFIG",
-    SET_CHOICES = "SET_CHOICES",
     SET_HINT = "SET_HINT",
     SET_IGNORE_BLUR = "SET_IGNORE_BLUR",
     SET_INPUT = "SET_INPUT",
-    SET_LOGIN = "SET_LOGIN",
     SET_LOG = "SET_LOG",
+    SET_LOGIN = "SET_LOGIN",
+    SET_MAIN_HEIGHT = "SET_MAIN_HEIGHT",
+    SET_MAX_HEIGHT = "SET_MAX_HEIGHT",
     SET_MODE = "SET_MODE",
     SET_PANEL = "SET_PANEL",
+    SET_PID = "SET_PID",
     SET_PLACEHOLDER = "SET_PLACEHOLDER",
+    SET_PREVIEW = "SET_PREVIEW",
+    SET_PROMPT_BOUNDS = "SET_PROMPT_BOUNDS",
+    SET_PROMPT_DATA = "SET_PROMPT_DATA",
+    SET_SCRIPT = "SET_SCRIPT",
     SET_TAB_INDEX = "SET_TAB_INDEX",
+    SET_TEXTAREA_CONFIG = "SET_TEXTAREA_CONFIG",
+    SET_TOP_HEIGHT = "SET_TOP_HEIGHT",
     SHOW = "SHOW",
     SHOW_IMAGE = "SHOW_IMAGE",
     SHOW_NOTIFICATION = "SHOW_NOTIFICATION",
-    SET_PROMPT_DATA = "SET_PROMPT_DATA",
     SHOW_TEXT = "SHOW_TEXT",
     SHRINK_PROMPT = "SHRINK_PROMPT",
     SWITCH_KENV = "SWITCH_KENV",
@@ -63,31 +71,26 @@ export declare enum Channel {
     UPDATE_APP = "UPDATE_APP",
     UPDATE_PROMPT_WARN = "UPDATE_PROMPT_WARN",
     USER_RESIZED = "USER_RESIZED",
-    VALUE_SUBMITTED = "VALUE_SUBMITTED",
-    SET_PREVIEW = "SET_PREVIEW",
-    CLEAR_PROMPT_CACHE = "CLEAR_PROMPT_CACHE",
-    PROMPT_BLURRED = "PROMPT_BLURRED",
-    SET_PID = "SET_PID",
-    RUN_SCRIPT = "RUN_SCRIPT"
+    VALUE_SUBMITTED = "VALUE_SUBMITTED"
 }
 export declare enum ProcessType {
-    Schedule = "Schedule",
     App = "App",
     Background = "Background",
+    KIT_PROCESS = "KIT_PROCESS",
     Prompt = "Prompt",
-    Watch = "Watch",
+    Schedule = "Schedule",
     System = "System",
-    KIT_PROCESS = "KIT_PROCESS"
+    Watch = "Watch"
 }
 export declare enum ErrorAction {
-    Open = "Open",
-    Log = "Log",
+    Ask = "Ask",
     KitLog = "KitLog",
-    Ask = "Ask"
+    Log = "Log",
+    Open = "Open"
 }
 export declare enum ProcessState {
-    Idle = "Idle",
-    Active = "Active"
+    Active = "Active",
+    Idle = "Idle"
 }
 export declare enum UI {
     none = 0,
@@ -101,6 +104,6 @@ export declare enum UI {
     log = 128
 }
 export declare enum Bin {
-    scripts = "scripts",
-    cli = "cli"
+    cli = "cli",
+    scripts = "scripts"
 }

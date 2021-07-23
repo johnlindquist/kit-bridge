@@ -98,9 +98,13 @@ export let assignPropsTo = (
 }
 
 let fileExists = (path: string) => {
-  return lstatSync(path, {
-    throwIfNoEntry: false,
-  })?.isFile()
+  try {
+    return lstatSync(path, {
+      throwIfNoEntry: false,
+    })?.isFile()
+  } catch {
+    return false
+  }
 }
 
 export let resolveToScriptPath = (

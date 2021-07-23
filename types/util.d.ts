@@ -26,11 +26,11 @@ export declare let assignPropsTo: (source: {
 } | ArrayLike<unknown>, target: {
     [x: string]: unknown;
 }) => void;
-export declare let resolveToScriptPath: (script: string) => string;
+export declare let resolveToScriptPath: (file: string, cwd?: string) => string;
 export declare let resolveScriptToCommand: (script: string) => string;
 export declare const shortcutNormalizer: (shortcut: string) => string;
 export declare const friendlyShortcut: (shortcut: string) => string;
-export declare let info: (file: string) => Promise<Script>;
+export declare let info: (filePath: string) => Promise<Script>;
 export declare let getLastSlashSeparated: (string: string, count: number) => string;
 export declare let getScriptFiles: (kenv?: string) => Promise<string[]>;
 export declare let getKenvs: () => Promise<string[]>;
