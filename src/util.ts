@@ -3,7 +3,7 @@ import * as os from "os"
 
 import { ProcessType, UI } from "./enum.js"
 import { Script } from "./type.js"
-import { copyFileSync } from "fs"
+import { copyFileSync, lstatSync } from "fs"
 import { readFile, readdir, lstat } from "fs/promises"
 import { execSync } from "child_process"
 
@@ -97,38 +97,46 @@ export let assignPropsTo = (
   })
 }
 
-export let resolveToScriptPath = (
-  script: string
-): string => {
+let fileExists = (path: string) => {
+  return lstatSync(path, {
+    throwIfNoEntry: false,
+  })?.isFile()
+}
+
+export let resolveToScriptPath = (file: string) => {
+  let script = file
   if (!script.endsWith(".js")) script += ".js"
 
-  if (script.startsWith(path.sep)) return script
-
-  if (script.match(/\//g)?.length === 1) {
-    let [k, s] = script.split("/")
-    return kenvPath("kenvs", k, "scripts", s)
+  // Check full path
+  if (script.startsWith(path.sep)) {
+    if (!fileExists(script)) {
+      throw new Error(`${script} not found`)
+    }
+    return script
   }
 
-  if (script.startsWith("."))
-    script = path.resolve(process.cwd(), script)
+  // Check anywhere
+  let notKenvPath = path.resolve(process.cwd(), script)
 
-  if (!script.includes(path.sep))
-    return kenvPath("scripts", script)
-
-  if (
-    !script.includes(kenvPath()) &&
-    !script.includes(kitPath())
-  ) {
-    copyFileSync(script, kitPath("tmp"))
-
-    let tmpScript = kitPath(
-      "tmp",
-      script.replace(/.*\//gi, "")
-    )
-    return tmpScript
+  if (fileExists(notKenvPath)) {
+    let baseName = path.basename(notKenvPath)
+    let tmpKitScriptPath = kitPath("tmp", baseName)
+    copyFileSync(notKenvPath, tmpKitScriptPath)
+    return tmpKitScriptPath
   }
 
-  return script
+  // Check main kenv
+  let kenvScript = kenvPath("scripts", script)
+  if (fileExists(kenvScript)) return kenvScript
+
+  // Check other kenvs
+  let [k, s] = script.split("/")
+  if (s) {
+    kenvScript = kenvPath("kenvs", k, "scripts", s)
+    if (fileExists(kenvScript)) return kenvScript
+  }
+
+  throw new Error(`${file} not found`)
 }
 
 export let resolveScriptToCommand = (script: string) => {
