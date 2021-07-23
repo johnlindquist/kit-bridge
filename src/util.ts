@@ -103,7 +103,10 @@ let fileExists = (path: string) => {
   })?.isFile()
 }
 
-export let resolveToScriptPath = (file: string) => {
+export let resolveToScriptPath = (
+  file: string,
+  cwd: string = process.cwd()
+) => {
   let script = file
   if (!script.endsWith(".js")) script += ".js"
 
@@ -116,7 +119,7 @@ export let resolveToScriptPath = (file: string) => {
   }
 
   // Check anywhere
-  let notKenvPath = path.resolve(process.cwd(), script)
+  let notKenvPath = path.resolve(cwd, script)
 
   if (fileExists(notKenvPath)) {
     let baseName = path.basename(notKenvPath)
@@ -164,13 +167,9 @@ export const friendlyShortcut = (shortcut: string) =>
     .replace(`Control`, `ctrl`)
     .replace(`Shift`, `shift`)
 
-export let info = async (file: string): Promise<Script> => {
-  let filePath = file.startsWith("/scripts")
-    ? kenvPath(file)
-    : file.startsWith(path.sep)
-    ? file
-    : kenvPath(!file.includes("/") ? "scripts" : "", file)
-
+export let info = async (
+  filePath: string
+): Promise<Script> => {
   let fileContents = await readFile(filePath, "utf8")
 
   let getByMarker = (marker: string) =>
