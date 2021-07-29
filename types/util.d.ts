@@ -6,13 +6,6 @@ export declare let isFile: (file: string) => Promise<boolean>;
 export declare let isDir: (dir: string) => Promise<boolean>;
 export declare let isBin: (bin: string) => Promise<boolean>;
 export declare let kitPath: (...parts: string[]) => string;
-declare global {
-    namespace NodeJS {
-        interface Global {
-            kitScript: string;
-        }
-    }
-}
 export declare let kenvPath: (...parts: string[]) => string;
 export declare let kitDotEnv: () => string;
 export declare const prefsPath: string;
@@ -44,3 +37,11 @@ export declare let getKenvs: () => Promise<string[]>;
 export declare let writeScriptsDb: () => Promise<Script[]>;
 export declare let stripMetadata: (fileContents: string) => string;
 export declare const getLogFromScriptPath: (filePath: string) => string;
+declare global {
+    namespace NodeJS {
+        interface Global {
+            kitScript: string;
+        }
+    }
+}
+export declare const resolveKenv: (...parts: string[]) => string;

@@ -1,7 +1,7 @@
 import * as path from "path"
 import {
   appDbPath,
-  kenvPath,
+  resolveKenv,
   kitPath,
   mainScriptPath,
   prefsPath,
@@ -21,7 +21,7 @@ export let db = async (
   let dbPath =
     key.startsWith(path.sep) && key.endsWith(".json")
       ? key
-      : kenvPath("db", `${key}.json`)
+      : resolveKenv("db", `${key}.json`)
 
   let parentExists = await isDir(path.dirname(dbPath))
   if (!parentExists) {
