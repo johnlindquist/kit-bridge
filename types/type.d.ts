@@ -12,6 +12,7 @@ export interface Choice<Value = any> {
     id?: string;
     shortcode?: string[];
     className?: string;
+    tag?: string;
 }
 export interface Script extends Choice {
     filePath: string;
@@ -33,6 +34,7 @@ export interface Script extends Choice {
     tabs?: string[];
     kenv: string;
     tag?: string;
+    log?: boolean;
 }
 export interface PromptData {
     id: number;

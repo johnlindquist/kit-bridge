@@ -250,6 +250,7 @@ export let info = async (
       ?.split(" ")
       .map(sc => sc.trim().toLowerCase()),
     exclude: Boolean(getByMarker("Exclude:")),
+    log: Boolean(getByMarker("Log:")),
     schedule,
     watch,
     system,
