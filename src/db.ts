@@ -43,8 +43,6 @@ export let db = async (
   await _db.read()
 
   if (!_db.data || !fromCache) {
-    console.log(`🔄 Refresh scripts db`)
-
     let getData = async () => {
       if (typeof defaults === "function") {
         let data = await defaults()
@@ -86,6 +84,7 @@ export let getScriptsDb = async (
 ): Promise<{
   scripts: Script[]
 }> => {
+  if (!fromCache) console.log(`🔄 Refresh scripts db`)
   return await db(
     kitPath("db", "scripts.json"),
     async () => ({
