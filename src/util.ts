@@ -249,8 +249,8 @@ export let info = async (
     shortcode: getByMarker("Shortcode:")
       ?.split(" ")
       .map(sc => sc.trim().toLowerCase()),
-    exclude: Boolean(getByMarker("Exclude:")),
-    log: Boolean(getByMarker("Log:")),
+    exclude: Boolean(getByMarker("Exclude:") === "true"),
+    log: Boolean(getByMarker("Log:") === "false"),
     schedule,
     watch,
     system,
