@@ -6,6 +6,13 @@ export declare let isFile: (file: string) => Promise<boolean>;
 export declare let isDir: (dir: string) => Promise<boolean>;
 export declare let isBin: (bin: string) => Promise<boolean>;
 export declare let kitPath: (...parts: string[]) => string;
+declare global {
+    namespace NodeJS {
+        interface Global {
+            kitScript: string;
+        }
+    }
+}
 export declare let kenvPath: (...parts: string[]) => string;
 export declare let kitDotEnv: () => string;
 export declare const prefsPath: string;

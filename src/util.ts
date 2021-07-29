@@ -57,7 +57,19 @@ export let kitPath = (...parts: string[]) =>
     ...parts.filter(Boolean)
   )
 
+declare global {
+  namespace NodeJS {
+    interface Global {
+      kitScript: string
+    }
+  }
+}
+
 export let kenvPath = (...parts: string[]) => {
+  if (global.kitScript) {
+    return path.resolve(global.kitScript, "..")
+  }
+
   return path.join(
     process.env.KENV || home(".kenv"),
     ...parts.filter(Boolean)
