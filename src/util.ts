@@ -67,7 +67,7 @@ declare global {
 
 export let kenvPath = (...parts: string[]) => {
   if (global.kitScript) {
-    return path.resolve(global.kitScript, "..")
+    return path.resolve(global.kitScript, "..", "..")
   }
 
   return path.join(
