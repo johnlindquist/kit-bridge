@@ -187,8 +187,8 @@ export let info = async (
     filePath.split(path.sep)?.pop()?.replace(".js", "") ||
     ""
 
-  let shortcut = shortcutNormalizer(
-    getByMarker("Shortcut:")
+  let shortcut = friendlyShortcut(
+    shortcutNormalizer(getByMarker("Shortcut:"))
   )
   let menu = getByMarker("Menu:")
   let schedule = getByMarker("Schedule:")
@@ -197,10 +197,9 @@ export let info = async (
   let img = getByMarker("Image:")
   let background = getByMarker("Background:")
   let timeout = parseInt(getByMarker("Timeout:"), 10)
-
   let tabs =
     fileContents.match(
-      new RegExp(`(?<=onTab[(]['"]).*(?=\s*['"])`, "gim")
+      new RegExp(`(?<=^onTab[(]['"]).*(?=\s*['"])`, "gim")
     ) || []
 
   let ui = (getByMarker("UI:") ||
@@ -238,9 +237,7 @@ export let info = async (
     type,
     shortcut,
     menu,
-    name:
-      (menu || command) +
-      (shortcut ? `: ${friendlyShortcut(shortcut)}` : ``),
+    name: menu || command,
 
     description: getByMarker("Description:"),
     alias: getByMarker("Alias:"),
