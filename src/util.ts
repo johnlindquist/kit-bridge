@@ -170,6 +170,9 @@ export const friendlyShortcut = (shortcut: string) =>
     .replace(`Alt`, `opt`)
     .replace(`Control`, `ctrl`)
     .replace(`Shift`, `shift`)
+    .trim()
+    .replace(" ", "+")
+    .toLowerCase()
 
 export let info = async (
   filePath: string
