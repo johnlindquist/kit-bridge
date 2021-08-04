@@ -55,6 +55,8 @@ export interface PromptData {
   strict?: boolean
   mode?: Mode
   className?: string
+  hint?: string
+  input?: string
 }
 
 export interface MessageData extends PromptData {
