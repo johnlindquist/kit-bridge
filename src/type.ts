@@ -52,6 +52,7 @@ export interface PromptData {
   ignoreBlur: boolean
   textarea?: boolean
   secret?: Secret
+  strict?: boolean
 }
 
 export interface MessageData extends PromptData {
