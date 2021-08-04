@@ -53,6 +53,8 @@ export interface PromptData {
   textarea?: boolean
   secret?: Secret
   strict?: boolean
+  mode?: Mode
+  className?: string
 }
 
 export interface MessageData extends PromptData {
@@ -64,7 +66,6 @@ export interface MessageData extends PromptData {
   filePath?: string
   name?: string
   args?: string[]
-  mode?: Mode
   ignore?: boolean
   text?: string
   options?: any
