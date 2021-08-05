@@ -206,6 +206,12 @@ export let info = async (
       new RegExp(`(?<=^onTab[(]['"]).*(?=\s*['"])`, "gim")
     ) || []
 
+  let hasFlags = Boolean(
+    fileContents.match(
+      new RegExp(`(?<=^setFlags).*`, "gim")
+    )
+  )
+
   let ui = (getByMarker("UI:") ||
     fileContents
       .match(/(?<=await )arg|textarea|hotkey|drop/g)?.[0]
@@ -242,7 +248,6 @@ export let info = async (
     shortcut,
     menu,
     name: menu || command,
-
     description: getByMarker("Description:"),
     alias: getByMarker("Alias:"),
     author: getByMarker("Author:"),
@@ -252,6 +257,7 @@ export let info = async (
       .map(sc => sc.trim().toLowerCase()),
     exclude: Boolean(getByMarker("Exclude:") === "true"),
     log: Boolean(getByMarker("Log:") !== "false"),
+    hasFlags,
     schedule,
     watch,
     system,

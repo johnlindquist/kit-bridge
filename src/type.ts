@@ -39,6 +39,7 @@ export interface Script extends Choice {
   kenv: string
   tag?: string
   log?: boolean
+  hasFlags?: boolean
 }
 
 export interface PromptData {
