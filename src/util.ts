@@ -338,16 +338,14 @@ export let writeScriptsDb = async () => {
 export let stripMetadata = (fileContents: string) => {
   let markers = [
     "Menu",
-    "Description",
     "Schedule",
     "Watch",
     "System",
     "Background",
-    "Author",
-    "Twitter",
     "Shortcode",
     "Exclude",
     "Alias",
+    "Shortcut",
   ]
   return fileContents.replace(
     new RegExp(`(^//\\s*(${markers.join("|")}):).*`, "gim"),
