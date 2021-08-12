@@ -42,6 +42,30 @@ export interface Script extends Choice {
   hasFlags?: boolean
 }
 
+type InputType =
+  | "button"
+  | "checkbox"
+  | "color"
+  | "date"
+  | "datetime-local"
+  | "email"
+  | "file"
+  | "hidden"
+  | "image"
+  | "month"
+  | "number"
+  | "password"
+  | "radio"
+  | "range"
+  | "reset"
+  | "search"
+  | "submit"
+  | "tel"
+  | "text"
+  | "time"
+  | "url"
+  | "week"
+
 export interface PromptData {
   id: number
   script: Script
@@ -52,13 +76,14 @@ export interface PromptData {
   tabs: string[]
   ignoreBlur: boolean
   textarea?: boolean
-  secret?: Secret
+  secret?: boolean
   strict?: boolean
   mode?: Mode
   className?: string
   hint?: string
   input?: string
   selected?: string
+  type?: InputType
 }
 
 export interface MessageData extends PromptData {
