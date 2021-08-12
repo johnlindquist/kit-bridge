@@ -58,6 +58,7 @@ export interface PromptData {
   className?: string
   hint?: string
   input?: string
+  selected?: string
 }
 
 export interface MessageData extends PromptData {
