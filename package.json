@@ -1,6 +1,6 @@
 {
   "name": "kit-bridge",
-  "version": "7.0.1",
+  "version": "8.0.0",
   "description": "",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
