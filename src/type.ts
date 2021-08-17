@@ -23,6 +23,7 @@ export interface Script extends Choice {
   command: string
   menu?: string
   shortcut?: string
+  friendlyShortcut?: string
   alias?: string
   author?: string
   twitter?: string

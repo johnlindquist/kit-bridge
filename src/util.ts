@@ -165,15 +165,16 @@ export const shortcutNormalizer = (shortcut: string) =>
         .join("+")
     : ""
 
-export const friendlyShortcut = (shortcut: string) =>
-  shortcut
-    .replace(`CommandOrControl`, `cmd`)
-    .replace(`Alt`, `opt`)
-    .replace(`Control`, `ctrl`)
-    .replace(`Shift`, `shift`)
-    .trim()
-    .replace(" ", "+")
-    .toLowerCase()
+export const friendlyShortcut = (shortcut: string) => {
+  let f = ""
+  if (shortcut.includes("CommandOrControl+")) f += "cmd+"
+  if (shortcut.includes("Control+")) f += "ctrl+"
+  if (shortcut.includes("Alt+")) f += "opt+"
+  if (shortcut.includes("Shift+")) f += "shift+"
+  if (shortcut.includes("+")) f += shortcut.split("+").pop()
+
+  return f
+}
 
 export let info = async (
   filePath: string
@@ -247,6 +248,7 @@ export let info = async (
     command,
     type,
     shortcut,
+    friendlyShortcut: friendlyShortcut(shortcut),
     menu,
     name: menu || command,
     description: getByMarker("Description:"),
