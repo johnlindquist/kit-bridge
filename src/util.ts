@@ -171,7 +171,8 @@ export const friendlyShortcut = (shortcut: string) => {
   if (shortcut.includes("Control+")) f += "ctrl+"
   if (shortcut.includes("Alt+")) f += "opt+"
   if (shortcut.includes("Shift+")) f += "shift+"
-  if (shortcut.includes("+")) f += shortcut.split("+").pop()
+  if (shortcut.includes("+"))
+    f += shortcut.split("+").pop()?.toLowerCase()
 
   return f
 }
