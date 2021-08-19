@@ -15,7 +15,12 @@ export interface Choice<Value = any> {
   className?: string
   tag?: string
   shortcut?: string
-  kenv?: string
+  drag?:
+    | {
+        type?: string
+        domString?: string
+      }
+    | string
 }
 
 export interface Script extends Choice {
