@@ -17,8 +17,8 @@ export interface Choice<Value = any> {
   shortcut?: string
   drag?:
     | {
-        type?: string
-        domString?: string
+        format?: string
+        data?: string
       }
     | string
 }
