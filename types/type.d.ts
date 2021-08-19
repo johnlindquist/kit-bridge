@@ -13,7 +13,12 @@ export interface Choice<Value = any> {
   shortcode?: string[]
   className?: string
   tag?: string
-  dragType?: string
+  drag?:
+    | {
+        type?: string
+        domString?: string
+      }
+    | string
 }
 export interface Script extends Choice {
   filePath: string
