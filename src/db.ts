@@ -74,7 +74,12 @@ export let db = async (
       return _db?.data?.[k]
     },
     set: (target: any, key: string, value: any) => {
-      return ((_db as any).data[key] = value)
+      try {
+        ;(_db as any).data[key] = value
+        return true
+      } catch (error) {
+        return false
+      }
     },
   })
 }
