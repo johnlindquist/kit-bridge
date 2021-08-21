@@ -157,6 +157,7 @@ export let scriptValue: ScriptValue =
 type AppDb = {
   needsRestart: boolean
   version: string
+  openAtLogin: boolean
 }
 
 export let getAppDb = async (): Promise<
