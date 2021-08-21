@@ -313,14 +313,11 @@ export let getKenvs = async (): Promise<string[]> => {
   let kenvs: string[] = []
   if (!(await isDir(kenvPath("kenvs")))) return kenvs
 
-  let kenvsDir = (...parts: string[]) =>
-    kenvPath("kenvs", ...parts)
+  let dirs = await readdir(kenvPath("kenvs"), {
+    withFileTypes: true,
+  })
 
-  for await (let kenvDir of await readdir(kenvsDir())) {
-    kenvs.push(kenvsDir(kenvDir))
-  }
-
-  return kenvs
+  return dirs.filter(d => d.isDirectory()).map(d => d.name)
 }
 
 export let writeScriptsDb = async () => {
