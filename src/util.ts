@@ -317,7 +317,9 @@ export let getKenvs = async (): Promise<string[]> => {
     withFileTypes: true,
   })
 
-  return dirs.filter(d => d.isDirectory()).map(d => d.name)
+  return dirs
+    .filter(d => d.isDirectory())
+    .map(d => kenvPath("kenvs", d.name))
 }
 
 export let writeScriptsDb = async () => {
